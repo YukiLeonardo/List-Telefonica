@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">ListaTelefonica</string>
+    <string name="app_name">LitsTelefonica</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_telefone">Telefone</string>
+    <string name="hinr_data_de_nascimento">Data de Nascimento</string>
 </resources>
