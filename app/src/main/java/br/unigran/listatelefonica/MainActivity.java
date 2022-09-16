@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +31,17 @@ public class MainActivity extends AppCompatActivity {
         listagem = findViewById(R.id.id_list);
         dados = new ArrayList();
         ArrayAdapter adapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dados);
-        listagem.findViewById(id.R)
+        listagem.setAdapter(adapter);
     }
     public void salvar (View view){
         Contatos contatos = new Contatos();
         contatos.setNome (nome.getText().toString());
         contatos.setTelefone(telefone.getText().toString());
         contatos.setDatanasc(datanasc.getText().toString());
+        dados.add(contatos);
+        Toast.makeText(this,"Salvo com Sucesso!", Toast.LENGTH_LONG)
+                .show();
     }
 
-
-
 }
 
-}

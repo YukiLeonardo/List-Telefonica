@@ -3,4 +3,6 @@
     <string name="hint_nome">Nome</string>
     <string name="hint_telefone">Telefone</string>
     <string name="hinr_data_de_nascimento">Data de Nascimento</string>
+    <string name="hind_salvar">salvar</string>
+    <string name="salvar">SALVAR</string>
 </resources>
