@@ -2,6 +2,7 @@ package br.unigran.listatelefonica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unigran.BancoDados.DBHelper;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText nome;
@@ -19,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
     EditText datanasc;
     ListView listagem;
     List<Contatos> dados;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbHelper = new DBHelper(this);
         setContentView(R.layout.activity_main);
 
         nome = findViewById(R.id.id_nome);
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         contatos.setTelefone(telefone.getText().toString());
         contatos.setDatanasc(datanasc.getText().toString());
         dados.add(contatos);
+        dbHelper.inserir(contatos,dbHelper);
         Toast.makeText(this,"Salvo com Sucesso!", Toast.LENGTH_LONG)
                 .show();
     }
