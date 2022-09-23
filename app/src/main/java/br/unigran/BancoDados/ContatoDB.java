@@ -21,22 +21,30 @@ public class ContatoDB {
             valores.put("nome",contatos.getNome());
             valores.put("telefone",contatos.getTelefone());
             valores.put("datanasc", contatos.getDatanasc());
-            conexao.insertOrThrow("Lista", null, valores);
+            conexao.insertOrThrow("telefonica", null, valores);
             conexao.close();
         }
 
 
-        public void atualizar(){}
+        public void atualizar(Contatos contatos){
+            conexao = dbHelper.getWritableDatabase();//abre o bd
+            ContentValues  valores = new ContentValues();
+            valores.put("nome",contatos.getNome());
+            valores.put("telefone",contatos.getTelefone());
+            valores.put("datanasc", contatos.getDatanasc());
+            conexao.update("telefonica", valores, "id=?", new String[]{contatos.getId().toString()});
+            conexao.close();
+        }
         public void remover(int id){
             conexao=dbHelper.getWritableDatabase();
-            conexao.delete("listatelefonica","id=?",
+            conexao.delete("telefonica","id=?",
                     new String[]{id+""});
         }
         public void lista(List dados){
             dados.clear();
             conexao=dbHelper.getReadableDatabase();
-            String names[]={"id","nome","telefone","datanasc"};
-            Cursor query = conexao.query("listatelefonica", names,
+            String nome[]={"id","nome","telefone","datanasc"};
+            Cursor query = conexao.query("telefonica", nome,
                     null, null, null,
                     null, "nome");
             while (query.moveToNext()){

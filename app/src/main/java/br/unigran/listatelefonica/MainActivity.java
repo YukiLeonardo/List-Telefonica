@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     List<Contatos> dados;
     DBHelper dbHelper;
     ContatoDB contatoDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,39 +44,45 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dados);
         listagem.setAdapter(adapter);
 
-        contatoDB=new ContatoDB(dbHelper);
+        contatoDB = new ContatoDB(dbHelper);
         contatoDB.lista(dados);
-
-        listagem.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AlertDialog.Builder alert =
-                        new AlertDialog.Builder(getApplicationContext());
-                alert.setMessage("Confirmar");
-                alert.setPositiveButton("remover",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                alert.create().show();
-
-                return false;
-            }
-        });
-
+        acoes();
     }
+        private void acoes(){
+            listagem.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long k) {
+                    AlertDialog.Builder alert =
+                            new AlertDialog.Builder(getApplicationContext());
+                    alert.setMessage("Confirmar");
+                    alert.setPositiveButton("remover",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int k) {
+                                    contatoDB.remover(dados.get(i).getId());
+                                    contatoDB.lista(dados);
+                                }
+                            });
+                    alert.create().show();
+                    return false;
+                }
+            });
 
+}
+
+    Contatos contatos;
     public void salvar(View view){
-        Contatos contatos = new Contatos();
+        if(contatos==null)
+            contatos = new Contatos();
         contatos.setNome(nome.getText().toString());
         contatos.setTelefone(telefone.getText().toString());
-        dados.add(contatos);
-        contatoDB.inserir(contatos);
+        contatos.setDatanasc(datanasc.getText().toString());
 
         contatoDB.inserir(contatos);
         contatoDB.lista(dados);
+
+        contatos=null;
+
         Toast.makeText(this,"Salvo com Sucesso!", Toast.LENGTH_LONG)
                 .show();
     }
