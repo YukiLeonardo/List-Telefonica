@@ -69,6 +69,30 @@ public class MainActivity extends AppCompatActivity {
             });
 
 }
+    public void remover(View view){
+        new AlertDialog.Builder(view.getContext())
+                .setMessage("Deseja realmente remover")
+                .setPositiveButton("Confirmar",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface,
+                                                int k) {
+                                contatoDB.remover(contatos.getId());
+                                limpar();
+                                contatoDB.lista(dados);
+                                ((ArrayAdapter) listagem.getAdapter()
+                                ).notifyDataSetChanged();
+                            }
+                        })
+                .setNegativeButton("cancelar",null)
+                .create().show();
+    }
+    private void limpar(){
+        nome.setText("");
+        telefone.setText("");
+        datanasc.setText("");
+        findViewById(R.id.id_dedistir).setVisibility(View.INVISIBLE);
+    }
 
     Contatos contatos;
     public void salvar(View view){

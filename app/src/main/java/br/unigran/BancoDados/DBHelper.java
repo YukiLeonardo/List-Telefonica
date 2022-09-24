@@ -24,12 +24,5 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL(
-                "create table telefonica("+
-                        "id interger primary key autoincrement,"+
-                        "nome varchar(150),"+
-                        "telefone varchar(15)," +
-                        "datanasc varchar(8))"
-        );
     }
 }

@@ -14,15 +14,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint_nome"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/id_telefone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/id_telefone"
@@ -32,14 +33,15 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint_telefone"
         android:inputType="phone"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/id_datanasc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_nome"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/id_nome" />
 
     <EditText
         android:id="@+id/id_datanasc"
@@ -49,14 +51,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="5dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hinr_data_de_nascimento"
         android:inputType="date"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/id_salvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_telefone"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/id_telefone" />
 
     <ListView
         android:id="@+id/id_list"
@@ -76,15 +80,29 @@
         android:id="@+id/id_salvar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="14dp"
         android:hint="@string/hind_salvar"
         android:onClick="salvar"
         android:text="@string/salvar"
         app:layout_constraintBottom_toTopOf="@+id/id_list"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/id_dedistir"
+        app:layout_constraintTop_toBottomOf="@+id/id_datanasc" />
+
+    <Button
+        android:id="@+id/id_dedistir"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/desistir"
+        app:layout_constraintBottom_toTopOf="@+id/id_list"
+        app:layout_constraintEnd_toStartOf="@+id/id_salvar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_datanasc" />
 
